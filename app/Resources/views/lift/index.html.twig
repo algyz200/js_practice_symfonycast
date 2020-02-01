@@ -70,30 +70,12 @@
 {% block javascripts %}
     {{ parent() }}
 
+    <script src="{{ asset('assets/js/RepLogApp.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             var $table = $('.js-rep-log-table');
-            $table.find('.js-delete-rep-log').on('click', function(e) {
-                e.preventDefault();
-                $(this).addClass('text-danger');
-
-                var deleteUrl = $(this).data('url');
-                var $row = $(this).closest('tr');
-                var $totalWeightContainer = $table.find('.js-total-weight');
-                var newWeight = $totalWeightContainer.html() - $row.data('weight');
-                $.ajax({
-                   url: deleteUrl,
-                   method: 'DELETE',
-                   success: function() {
-                       $row.fadeOut();
-                       $totalWeightContainer.html(newWeight);
-                   }
-                })
-            });
-
-            $('.js-rep-log-table tbody tr').on('click', function() {
-                console.log('row clicked');
-            });
+            RepLogApp.initialize($table);
         });
     </script>
 {% endblock %}
