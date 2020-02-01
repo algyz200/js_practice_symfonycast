@@ -72,7 +72,7 @@
                     self.updateTotalWeightLifted();
                 },
                 error: function(jqXHR) {
-                    $form.closest('js-new-rep-log-form-wrapper')
+                    $form.closest('.js-new-rep-log-form-wrapper')
                         .html(jqXHR.responseText);
                 }
             });
